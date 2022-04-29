@@ -4,6 +4,7 @@ import com.Task4.CustomAnnotationsExample.Validations.isValidContact;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -13,17 +14,15 @@ public class Student {
      @Id
      @GeneratedValue(strategy=GenerationType.AUTO)
      private int id;
-    private int roll_no;
+     private int roll_no;
 
-    @NotBlank(message = "message is necessary")
-    @Size(min=2,message = "size should be greater than 2")
-    private String name;
-    private String email;
+     private String name;
+     private String email;
 
+    @isValidContact
+    private String contact;
 
-    private long contact;
-
-    public Student(int roll_no, String name, String email, long contact) {
+    public Student(int roll_no, String name, String email, String contact) {
         this.roll_no = roll_no;
         this.name = name;
         this.email = email;
@@ -60,11 +59,11 @@ public class Student {
         this.email = email;
     }
 
-    public long getContact() {
+    public String getContact() {
         return contact;
     }
 
-    public void setContact(long contact) {
+    public void setContact(String contact) {
         this.contact = contact;
     }
 
